@@ -10,7 +10,7 @@ import CoreData
 
 
 class Model : ObservableObject {
-    @Published var savedHabits : [Habit] = []
+    @Published var savedHabits : [Habit] = [] // List to hold all small tasks
     
     let container: NSPersistentContainer
     
@@ -35,7 +35,7 @@ class Model : ObservableObject {
         }
     }
     
-    func addHabit(text: String) {
+    func addHabit(text: String) { // Adds a habit using its given name and default values
         let newHabit = Habit(context: container.viewContext)
         newHabit.name = text
         newHabit.isCompleted = false
@@ -66,10 +66,9 @@ class Model : ObservableObject {
 struct ContentView: View {
     @StateObject var vm = Model()
     
-    var today = Date().formatted(date: .numeric, time: .omitted)
+    var today = Date().formatted(date: .numeric, time: .omitted) // Formats today's date in mm/dd/yyyy
     @State var dd : Date = Date()
-    
-    
+
     @State var textFieldString: String = ""
     
     
@@ -86,7 +85,7 @@ struct ContentView: View {
                             .padding(.horizontal)
                             .foregroundColor(Color.white)
                         Button(action: {
-                            guard !textFieldString.isEmpty else { return }
+                            guard !textFieldString.isEmpty else { return } // Checks if string is not empty before saving
                             vm.addHabit(text: textFieldString)
                             textFieldString = ""
                         }, label: {
@@ -100,16 +99,16 @@ struct ContentView: View {
                         })
                         .padding(.trailing)
                     }
+                    // Displays this message when list is empty
                     if(vm.savedHabits.isEmpty){
                         Text("\n\n\nHere you can list tasks for the day.\nDelete or keep them as reccurring tasks")
                             .multilineTextAlignment(.center)
                             .foregroundColor(Color(.lightGray))
                     }
                     List{
-                        
                         ForEach(vm.savedHabits) { Habit in
                             Button(action: {
-                                Habit.isCompleted = !Habit.isCompleted
+                                Habit.isCompleted = !Habit.isCompleted // Once task is clicked, change its color
                                 vm.saveData()
                             }
                                    ,label: {
@@ -123,8 +122,9 @@ struct ContentView: View {
                         .onDelete(perform: vm.deleteHabit)
                         .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
                     }
-                    .navigationTitle("ToDo's for \(today)")
+                    .navigationTitle("ToDo's for \(today)") // Uses current day for title
                     .toolbar{
+                        // Navigation Link to other View to create longterm tasks
                         NavigationLink(destination: FutureTodoView().navigationBarBackButtonHidden()){
                             Label("Todos", systemImage: "bookmark.circle")
                                 .foregroundColor(Color("Color 1"))

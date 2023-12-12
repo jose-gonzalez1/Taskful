@@ -10,7 +10,7 @@ import CoreData
 
 
 class TasksModel : ObservableObject {
-    @Published var savedTodos : [Todo] = []
+    @Published var savedTodos : [Todo] = [] // List to hold tasks
     
     let container: NSPersistentContainer
     
@@ -35,7 +35,7 @@ class TasksModel : ObservableObject {
         }
     }
     
-    func addTodo(name: String, dets: String, date: Date) {
+    func addTodo(name: String, dets: String, date: Date) { // Pass name, description and date to create longterm task
         let newTodo = Todo(context: container.viewContext)
         newTodo.name = name
         newTodo.details = dets
@@ -73,6 +73,7 @@ struct FutureTodoView : View {
     @State var descFieldEntry : String = ""
     @State var dayString : String = ""
     
+    // Function that returns a string from a date
     func stringify(day : Date) -> String{
             return day.formatted(date: .numeric, time: .omitted)
     }
@@ -80,6 +81,7 @@ struct FutureTodoView : View {
     var body : some View {
         NavigationView{
             VStack{
+                // Message when list is empty
                 if(todoModel.savedTodos.isEmpty){
                     Text("\n\n\nHere you can list any future Todos.\nDelete by swiping right.")
                         .multilineTextAlignment(.center)
@@ -87,13 +89,13 @@ struct FutureTodoView : View {
                 }
                 List{
                     ForEach(todoModel.savedTodos) { Todo in
-                        Button(action: {
+                        Button(action: { // Button is used to fill background color
                             todoModel.saveData()
                         }
                                ,label: {
                             Text(Todo.name ?? "No Name")
                                 .foregroundColor(Color(.white))
-                            Text(Todo.details ?? "No Name")
+                            Text(Todo.details ?? "")
                                 .foregroundColor(Color(.white))
                             Text(stringify(day : Todo.date!))
                                 .foregroundColor(Color(.white))
@@ -108,7 +110,7 @@ struct FutureTodoView : View {
             }
             .navigationTitle("Future ToDos")
             .toolbar{
-                ToolbarItem(placement: .navigationBarLeading){
+                ToolbarItem(placement: .navigationBarLeading){ // Returns to current day's tasks
                     Button {
                         presentationMode.wrappedValue.dismiss()
                     } label: {
@@ -116,34 +118,35 @@ struct FutureTodoView : View {
                             .foregroundColor(Color("Color 1"))
                     }
                 }
-                ToolbarItem(placement: .navigationBarTrailing){
+                ToolbarItem(placement: .navigationBarTrailing){ // Add Button ( + )
                     Button {
-                        addingTodo.toggle()
+                        addingTodo.toggle() // Change adding bool to true
                     } label: {
                         Image(systemName: "plus.circle")
                             .foregroundColor(Color("Color 1"))
                     }
-                    .sheet(isPresented: $addingTodo){
+                    .sheet(isPresented: $addingTodo){ // Sheet appears when adding is true
                         VStack(alignment: .center){
-                            TextField("Todo's Name", text: $textFieldEntry)
+                            TextField("Todo's Name", text: $textFieldEntry) // Enter name
                                 .frame(width:350, height:60)
                                 .background(Color("Color 5"))
                                 .multilineTextAlignment(.center)
                                 .cornerRadius(20)
                                 .padding(.horizontal)
-                            TextField("Description", text: $descFieldEntry)
+                            TextField("Description", text: $descFieldEntry) // Enter descriptions
                                 .frame(width:350, height:100)
                                 .background(Color("Color 5"))
                                 .multilineTextAlignment(.center)
                                 .cornerRadius(20)
                                 .padding(.horizontal)
-                            DatePicker("", selection: $dd, displayedComponents: .date)
+                            DatePicker("", selection: $dd, displayedComponents: .date) // Displays calendar for user to pick date
                                 .datePickerStyle(.graphical)
-                            Button("Submit",
+                            Button("Submit", // Submit button
                                    action: {
-                                if(textFieldEntry.isEmpty){return}
-                                addingTodo.toggle()
+                                if(textFieldEntry.isEmpty){return} // If name is empty do not submit
+                                addingTodo.toggle() // set adding bool to false
                                 todoModel.addTodo(name: textFieldEntry, dets: descFieldEntry, date: dd)
+                                // enter new task to list
                             }
                             )
                         }

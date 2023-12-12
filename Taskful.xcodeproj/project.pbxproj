@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		75DE36232B20F9210026FC00 /* Todo App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Todo App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75DE36232B20F9210026FC00 /* Taskful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taskful.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75DE36262B20F9210026FC00 /* Todo_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo_AppApp.swift; sourceTree = "<group>"; };
 		75DE36282B20F9210026FC00 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		75DE362A2B20F9220026FC00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -47,7 +47,7 @@
 		75DE36242B20F9210026FC00 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				75DE36232B20F9210026FC00 /* Todo App.app */,
+				75DE36232B20F9210026FC00 /* Taskful.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,9 +76,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		75DE36222B20F9210026FC00 /* Todo App */ = {
+		75DE36222B20F9210026FC00 /* Taskful */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75DE36362B20F9220026FC00 /* Build configuration list for PBXNativeTarget "Todo App" */;
+			buildConfigurationList = 75DE36362B20F9220026FC00 /* Build configuration list for PBXNativeTarget "Taskful" */;
 			buildPhases = (
 				75DE361F2B20F9210026FC00 /* Sources */,
 				75DE36202B20F9210026FC00 /* Frameworks */,
@@ -88,9 +88,9 @@
 			);
 			dependencies = (
 			);
-			name = "Todo App";
+			name = Taskful;
 			productName = "Todo App";
-			productReference = 75DE36232B20F9210026FC00 /* Todo App.app */;
+			productReference = 75DE36232B20F9210026FC00 /* Taskful.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -108,7 +108,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 75DE361E2B20F9210026FC00 /* Build configuration list for PBXProject "Todo App" */;
+			buildConfigurationList = 75DE361E2B20F9210026FC00 /* Build configuration list for PBXProject "Taskful" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -121,7 +121,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				75DE36222B20F9210026FC00 /* Todo App */,
+				75DE36222B20F9210026FC00 /* Taskful */,
 			);
 		};
 /* End PBXProject section */
@@ -326,7 +326,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		75DE361E2B20F9210026FC00 /* Build configuration list for PBXProject "Todo App" */ = {
+		75DE361E2B20F9210026FC00 /* Build configuration list for PBXProject "Taskful" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75DE36342B20F9220026FC00 /* Debug */,
@@ -335,7 +335,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75DE36362B20F9220026FC00 /* Build configuration list for PBXNativeTarget "Todo App" */ = {
+		75DE36362B20F9220026FC00 /* Build configuration list for PBXNativeTarget "Taskful" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75DE36372B20F9220026FC00 /* Debug */,
