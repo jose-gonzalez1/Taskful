@@ -98,7 +98,7 @@ struct FutureTodoView : View {
                             Text(Todo.details ?? "")
                                 .foregroundColor(Color(.white))
                             Text(stringify(day : Todo.date!))
-                                .foregroundColor(Color(.white))
+                                .foregroundColor(Color("Color 5"))
                             
                         })
                         .frame(width: 360, height: 60, alignment: .center)
@@ -134,19 +134,24 @@ struct FutureTodoView : View {
                                 .cornerRadius(20)
                                 .padding(.horizontal)
                             TextField("Description", text: $descFieldEntry) // Enter descriptions
-                                .frame(width:350, height:100)
+                                .frame(width:350, height:80)
                                 .background(Color("Color 5"))
                                 .multilineTextAlignment(.center)
                                 .cornerRadius(20)
                                 .padding(.horizontal)
                             DatePicker("", selection: $dd, displayedComponents: .date) // Displays calendar for user to pick date
                                 .datePickerStyle(.graphical)
+                                .frame(width:320)
+                                .clipped(antialiased: true)
                             Button("Submit", // Submit button
                                    action: {
                                 if(textFieldEntry.isEmpty){return} // If name is empty do not submit
                                 addingTodo.toggle() // set adding bool to false
                                 todoModel.addTodo(name: textFieldEntry, dets: descFieldEntry, date: dd)
                                 // enter new task to list
+                                textFieldEntry = ""
+                                descFieldEntry = ""
+                                dd = Date()
                             }
                             )
                         }
